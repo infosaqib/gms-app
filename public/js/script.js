@@ -20,10 +20,10 @@ function generateInvoiceCard() {
   return (invoices.innerHTML += invoiceItems.map((x) => {
     let { id, Date, Name, itemName, totalPrice } = x
     return `  <div onclick="openInvoice()" id="invoice-list" class="flex flex-row items-center justify-between border border-gray-200 hover:border-purple-500 cursor-pointer rounded-lg my-4 py-6 px-4  bg-white gap-7">
-      <div class="flex flex-col lg:flex-row gap-3 lg:gap-12 items-center justify-center"><p class="text-black text-sm lg:text-base mb-2"><b class="text-blue-300">#</b>${id}</p>
+      <div class="flex flex-col md:flex-row gap-3 md:gap-12 items-center justify-center"><p class="text-black text-sm lg:text-base mb-2"><b class="text-blue-300">#</b>${id}</p>
         <p class="text-gray-400 text-sm lg:text-sm">${Date}</p>
         <p class="text-gray-400 text-sm lg:text-sm">${Name}</p></div> 
-   <div class="flex flex-col lg:flex-row gap-3 lg:gap-12 items-center justify-center">
+   <div class="flex flex-col md:flex-row gap-3 md:gap-12 items-center justify-center">
         <p class="text-gray-400 text-sm lg:text-sm">${itemName}</p>
         <p class="text-gray-400 text-sm lg:text-sm">${totalPrice}</p>
         <svg class="svgicon" width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4-4 4" stroke="#7C5DFA" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
@@ -76,8 +76,10 @@ function closeInvoice() {
 }
 
 function generateInvoice() {
-  return invoiceView.innerHTML = `
-    <header
+  return (invoiceView.innerHTML = invoiceItems.map(x => {
+
+    let { id, Name, Date, itemName, itemPrice, itemWeight, totalPrice } = x
+    return ` <header
     class="flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-start md:items-center bg-white py-3 md:py-6 px-4 my-3 rounded-lg">
     <button onclick="closeInvoice()"
         class=" text-gray-500 hover:text-gray-400 text-sm md:text-lg p-sm flex flex-row items-center justify-center gap-2">
@@ -96,12 +98,12 @@ function generateInvoice() {
     <div class="flex flex-col  justify-between">
         <div class="flex flex-col gap-4 md:block">
             <div class="flex flex-col">
-                <p class="text-black text-xs md:text-lg"><b class="text-blue-300">#</b>263527</p>
-                <p class="text-gray-400 text-xs md:text-base">Abdul Rehman</p>
+                <p class="text-black text-xs md:text-lg"><b class="text-blue-300">#</b>${id}</p>
+                <p class="text-gray-400 text-xs md:text-base">Mr. ${Name}</p>
             </div>
             <div class="flex flex-col py-3">
                 <p class="text-gray-400 text-xs md:text-lg  font-thin">Invoice Date</p>
-                <p class="text-black font-bold text-xs md:text-base">02-03-2019</p>
+                <p class="text-black font-bold text-xs md:text-base">${Date}</p>
             </div>
             <!-- <div class="flex flex-col py-3">
             <p class="text-gray-400 text-xs md:text-lg font-thin">Payment method</p>
@@ -116,31 +118,35 @@ function generateInvoice() {
             class="flex flex-row   items-start   justify-evenly bg-gray-100 rounded-lg md:rounded-t-xl md:mx-8 mt-0 md:mt-6 p-2">
             <div class="flex flex-col p-2">
                 <p class="text-gray-400 text-xs md:text-base">Item name</p>
-                <p class="text-black font-bold text-xs md:text-base">Rice</p>
+                <p class="text-black font-bold text-xs md:text-base">${itemName}</p>
             </div>
             <div class="flex flex-col p-2">
                 <p class="text-gray-400 text-xs md:text-base">Qty.</p>
-                <p class="text-black font-bold text-xs md:text-base">1 Kg</p>
+                <p class="text-black font-bold text-xs md:text-base">${itemWeight} kg</p>
             </div>
             <div class="flex flex-col p-2">
             <p class="text-gray-400 text-xs md:text-base">Item price</p>
-            <p class="text-black font-bold text-xs md:text-base">Rs.250</p>
+            <p class="text-black font-bold text-xs md:text-base">Rs.${itemPrice}</p>
         </div>
             <div class="flex flex-col p-2">
                 <p class="text-gray-400 text-xs md:text-base">Total</p>
-                <p class="text-black font-bold text-xs md:text-base">Rs.2500</p>
+                <p class="text-black font-bold text-xs md:text-base">Rs.${totalPrice}</p>
             </div>
         </div>
 
     </div>
     <div class="flex flex-row items-center justify-between bg-gray-700 p-3 md:p-6 rounded-lg">
         <h1 class="text-white text-sm md:text-lg font-bold">Amount Due</h1>
-        <p class="text-white text-sm md:text-lg font-bold">Rs.2500</p>
+        <p class="text-white text-sm md:text-lg font-bold">Rs.${totalPrice}</p>
     </div>
-</main>
-    `
-
+</main>`
+  })
+  )
 }
+
+
+
+
 generateInvoice()
 
 

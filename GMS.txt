@@ -4,12 +4,11 @@
 ✅ add products names from productItems array to invoice form 
 ✅read product rates from productItems array & apply rates on invoice form
 ✅dynamic/automatic product rates
-
-get input on invoice
+✅get input on invoice
 
 Use fs to store product in store.js
-Edit product catalog
 Use fs to store invoice form input
+Edit product catalog
 
 
 Bug:

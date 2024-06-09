@@ -56,6 +56,8 @@ let invoiceItems = [
         "Name": "Zain",
         "Date": '30-02-2023',
         "itemName": 'Figs',
+        "itemPrice": 160,
+        "itemWeight": 2,
         "totalPrice": 320
     }
 ]
